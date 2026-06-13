@@ -57,4 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Floating CTA visibility toggle
+    const floatingCta = document.getElementById('floating-cta');
+    const heroButton = document.querySelector('.hero .cta-button');
+    
+    if (floatingCta && heroButton) {
+        window.addEventListener('scroll', () => {
+            const heroButtonRect = heroButton.getBoundingClientRect();
+            // Show floating button when the hero button is scrolled out of view
+            if (heroButtonRect.top < 0) {
+                floatingCta.classList.add('visible');
+            } else {
+                floatingCta.classList.remove('visible');
+            }
+        });
+        
+        // Trigger once on load in case the user loads halfway down the page
+        window.dispatchEvent(new Event('scroll'));
+    }
 });
