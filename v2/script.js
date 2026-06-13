@@ -76,4 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trigger once on load in case the user loads halfway down the page
         window.dispatchEvent(new Event('scroll'));
     }
+
+    // UTM Parameter Forwarding for ad tracking
+    const urlParams = window.location.search;
+    if (urlParams) {
+        const ctaButtons = document.querySelectorAll('a[href*="trymensch.com/products/mensch-v7"]');
+        ctaButtons.forEach(button => {
+            const currentHref = button.getAttribute('href');
+            if (currentHref.includes('?')) {
+                button.setAttribute('href', currentHref + '&' + urlParams.substring(1));
+            } else {
+                button.setAttribute('href', currentHref + urlParams);
+            }
+        });
+    }
 });
