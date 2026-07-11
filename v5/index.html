@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Shave | MENSCH</title>
+    <meta name="description" content="Take this 60-second quiz to find the ultimate solution for a fast, clean, and irritation-free head shave.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '27125740710417165');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=27125740710417165&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Progress Bar (Hidden initially) -->
+        <div class="progress-container" id="progress-container" style="display: none;">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- STEP 0: Welcome -->
+        <div class="quiz-step active" id="step-0">
+            <h1 class="main-headline">Find Your Perfect Head Shaving Routine in 60 Seconds.</h1>
+            <p class="subtitle">Answer 6 quick questions to discover how to stop the irritation, ditch the messy sink, and shave your head in under 2 minutes.</p>
+            <button class="primary-btn" onclick="nextStep(1)">Take The Quiz →</button>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="quiz-step" id="step-1">
+            <div class="question-header">Question 1 of 6</div>
+            <h2 class="question-text">How often do you shave your head?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(2)">Every single day</button>
+                <button class="option-btn" onclick="nextStep(2)">Every few days</button>
+                <button class="option-btn" onclick="nextStep(2)">Once a week or less</button>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="quiz-step" id="step-2">
+            <div class="question-header">Question 2 of 6</div>
+            <h2 class="question-text">How long does your current shaving routine take?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(3)">Under 5 minutes</button>
+                <button class="option-btn" onclick="nextStep(3)">5 - 15 minutes</button>
+                <button class="option-btn" onclick="nextStep(3)">Way too long (15+ mins)</button>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="quiz-step" id="step-3">
+            <div class="question-header">Question 3 of 6</div>
+            <h2 class="question-text">Do you struggle with razor bumps, nicks, or skin irritation?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(4)">Yes, constantly. It's awful.</button>
+                <button class="option-btn" onclick="nextStep(4)">Sometimes, especially on my neck.</button>
+                <button class="option-btn" onclick="nextStep(4)">No, my skin is pretty tough.</button>
+            </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="quiz-step" id="step-4">
+            <div class="question-header">Question 4 of 6</div>
+            <h2 class="question-text">Be honest: Does your partner ever complain about hair clippings and foam all over the sink?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(5)">Yes, it's an absolute warzone.</button>
+                <button class="option-btn" onclick="nextStep(5)">Occasionally.</button>
+                <button class="option-btn" onclick="nextStep(5)">No, I clean it up perfectly.</button>
+            </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="quiz-step" id="step-5">
+            <div class="question-header">Question 5 of 6</div>
+            <h2 class="question-text">Are you currently locked into an expensive monthly blade subscription?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(6)">Yes, and I hate paying it.</button>
+                <button class="option-btn" onclick="nextStep(6)">Yes, but I don't mind it.</button>
+                <button class="option-btn" onclick="nextStep(6)">No, I buy as I go.</button>
+            </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="quiz-step" id="step-6">
+            <div class="question-header">Question 6 of 6</div>
+            <h2 class="question-text">What is your #1 priority right now?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="analyzeResults()">Save time in the morning</button>
+                <button class="option-btn" onclick="analyzeResults()">Stop the bleeding & irritation</button>
+                <button class="option-btn" onclick="analyzeResults()">Keep the bathroom clean</button>
+                <button class="option-btn" onclick="analyzeResults()">Stop wasting money on subscriptions</button>
+            </div>
+        </div>
+
+        <!-- ANALYZING SCREEN -->
+        <div class="quiz-step" id="step-analyzing">
+            <div class="loader"></div>
+            <h2 class="question-text" id="analyzing-text">Analyzing your answers...</h2>
+        </div>
+
+        <!-- FINAL RESULT -->
+        <div class="quiz-step" id="step-result">
+            <div class="match-badge">99% MATCH FOUND</div>
+            <h1 class="result-headline">The Mensch Shaver V7 is your perfect solution.</h1>
+            
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="assets/shaver.png" alt="Mensch V7 Head Shaver" style="max-width: 100%; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+            </div>
+
+            <p class="result-subtext">Based on your answers, you need a tool that is fast, clean, and gentle on your skin. Here is why the Mensch V7 is exactly what you've been looking for:</p>
+            
+            <ul class="benefits-list">
+                <li><span class="icon">⚡</span> <strong>Done in 2 Minutes:</strong> 7 flexible magnetic heads cover more surface area instantly.</li>
+                <li><span class="icon">🛡️</span> <strong>Zero Irritation:</strong> Glides smoothly without pulling or scratching the scalp.</li>
+                <li><span class="icon">✨</span> <strong>No Messy Sink:</strong> Hair is collected entirely inside the device. Shave anywhere, dry.</li>
+                <li><span class="icon">🚫</span> <strong>No Subscriptions:</strong> Buy it once. Own it forever. Backed by a 3-Year Warranty.</li>
+            </ul>
+
+            <div class="offer-box">
+                <h3>Unlock Your Exclusive Result Offer</h3>
+                <p>Get <strong>46% OFF</strong> + a <strong>FREE Travel Case</strong> on your first order today.</p>
+                <a href="https://trymensch.com/products/mensch-v7" class="cta-button pulse" id="final-cta">Claim My Discount & Get Mensch V7</a>
+                <p class="guarantee-text">30-Day No-Questions-Asked Money Back Guarantee.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
